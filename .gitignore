@@ -1,0 +1,18 @@
+D:\RGT\Code\MLOps\.ipynb_checkpoints
+duration-prediction.ipynb
+duration-prediction.ipynb
+prefect-mlops-zoomcamp/*
+mlopsenv/*
+Terms.txt
+
+# Files
+*.parquet
+*.csv
+*.json
+*.pdf
+
+#Mlflow
+mlruns/*
+models/*
+mlflow.db
+
