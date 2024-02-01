@@ -1,0 +1,48 @@
+duration-prediction.ipynb
+prefect-mlops-zoomcamp/*
+mlopsenv/*
+Terms.txt
+
+# Files
+*.parquet
+*.csv
+*.json
+*.pdf
+
+#Mlflow
+mlruns/*
+models/*
+mlflow.db
+
+# Environment-specific files
+.env
+env/
+venv/
+virtualenv/
+
+# binary files
+*.exe
+*.dll
+*.bin
+
+*.class
+*.pyc
+
+
+# Configuration files
+*.config
+*.conf
+.editorconfig
+
+# Logs and Databases
+*.db
+*.sqlite
+*.log
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# Version Control System Files
+.git/
+
+
