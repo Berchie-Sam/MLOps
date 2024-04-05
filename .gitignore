@@ -1,38 +1,44 @@
-duration-prediction.ipynb
-prefect-mlops-zoomcamp/*
-mlopsenv/*
-Terms.txt
-
-# Files
-*.parquet
-*.csv
-*.json
-*.pdf
-
-#Mlflow
-mlruns/*
-models/*
-mlflow.db
-
-# Environment-specific files
-.env
-env/
-venv/
-virtualenv/
-
-# binary files
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
 *.exe
 *.dll
 *.bin
-
 *.class
 *.pyc
 
+# Folders
+prefect-mlops-zoomcamp/
+data/
+Delete_data/
+mlopsenv/
 
 # Configuration files
+Config.py
 *.config
 *.conf
 .editorconfig
+
+
+# Files
+duration-prediction.ipynb
+*.parquet
+*.csv
+*.json
+*.txt
+*.pdf
+
+
+#Mlflow
+mlruns/
+models/
+
+# Environment-specific files
+*.env
+env/
+venv/
+virtualenv/
 
 # Logs and Databases
 *.db
@@ -40,9 +46,12 @@ virtualenv/
 *.log
 
 # Jupyter Notebook Checkpoints
-.ipynb_checkpoints/
+.ipynb_checkpoints
 
 # Version Control System Files
-.git/
+.git
 
+# IPython
+profile_default/
+ipython_config.py
 

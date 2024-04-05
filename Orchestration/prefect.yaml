@@ -31,3 +31,23 @@ deployments:
     name: null
     work_queue_name: null
     job_variables: {}
+
+deployments:
+  name: taxi_local_data
+  entrypoint: Orchestrate.py:main_flow
+  work_pool:
+    name: zoompool
+  name: taxi_s3_data
+  entrypoint: Orchestrate_s3.py:main_flow_s3
+  work_pool:
+    name: zoompool
+
+deployments:
+  - name: taxi_local_data
+    entrypoint: Orchestrate.py:main_flow
+    work_pool:
+      name: zoompool
+  - name: taxi_s3_data
+    entrypoint: Orchestrate_s3.py:main_flow_s3
+    work_pool:
+      name: zoompool
