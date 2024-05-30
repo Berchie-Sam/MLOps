@@ -8,11 +8,16 @@ from sklearn.feature_extraction import DictVectorizer
 from sklearn.metrics import mean_squared_error
 import mlflow 
 import xgboost as xgb
-from prefect import flow, task
+from prefect import task, flow
+from prefect.runtime import flow_run
+from prefect_aws import S3Bucket
+import datetime
+from prefect.artifacts import create_markdown_artifact
+from datetime import date
 
 @task(retries=3, retry_delay_seconds=2)
 def read_dataframe(filename: str) -> pd.DataFrame:
-    #Read data into dataframe
+    # Read data into dataframe
     df = pd.read_csv(filename)
     df.lpep_dropoff_datetime = pd.to_datetime(df.lpep_dropoff_datetime) 
     df.lpep_pickup_datetime  = pd.to_datetime(df.lpep_pickup_datetime)
@@ -106,10 +111,32 @@ def train_best_model(
         booster.save_model(xgb_json_path)
         mlflow.log_artifact(xgb_json_path, artifact_path="models_mlflow")
         
+        markdown__rmse_report = f"""# RMSE Report
+        
+        ## Summmary
+        
+        Duration Prediction
+        
+        ## RMSE XGBoost Model
+        
+        | Region       | RMSE |
+        |:=============|=======:|
+        |  {date.today()} | {rmse:.2f} |
+        """
+        
+        create_markdown_artifact(
+            key="duration-model-report", markdown=markdown__rmse_report
+        )
     return None
 
-@flow
-def main_flow(
+def generate_flow_run_name():
+    flow_name = "nyc-taxi-duration-prediction-experiment" # Use the flow name directly
+    now = datetime.datetime.now(datetime.timezone.utc)
+    return f"{now:%A}-{flow_name}"
+
+@flow(name="nyc-taxi-duration-prediction-experiment",
+      flow_run_name=generate_flow_run_name)
+def main_flow_s3(
     train_path: str = "D:\RGT\Code\MLOps\data\green_tripdata_2021-01.csv",
     val_path: str = "D:\RGT\Code\MLOps\data\green_tripdata_2021-02.csv",
 ) -> None:
@@ -128,7 +155,11 @@ def main_flow(
     
     #Train
     train_best_model(X_train, X_val, y_train, y_val, dv)
-    
-    
+
 if __name__ == "__main__":
-    main_flow()
+    main_flow_s3()
+    main_flow_s3.deploy(
+        name="nyc-taxi-duration-prediction-experiment",
+        work_pool_name="mlops-zoom-pool",
+        image="my_registry/my_image:my_image_tag"
+    )

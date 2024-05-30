@@ -1,48 +1,74 @@
-duration-prediction.ipynb
-prefect-mlops-zoomcamp/*
-mlopsenv/*
-Terms.txt
+# Included directories and files
+!Experiment-tracking/
+!duration-prediction.ipynb
+!Orchestration/
+!models/
+!README.md
+!duration-prediction.ipynb
+
+# Folders
+.prefect/
+**/models/
+**/mlruns/
+**/artifacts/
+Data/
+Delete_data/
+mlruns/
+models/
+mlopsenv/
+preprocessor/
+prefect-mlops-zoomcamp/
+mlartifacts/
 
 # Files
-*.parquet
-*.csv
-*.json
+*.yaml
+*.yml
+*.txt
+*.db
 *.pdf
+*.toml
+*.cfg
 
-#Mlflow
-mlruns/*
-models/*
-mlflow.db
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+*$py.class
 
-# Environment-specific files
-.env
+# Configuration file
+Config.py
+
+# Distribution / packaging
+.Python
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# Environments
+*.env
+*.venv
 env/
 venv/
-virtualenv/
+ENV/
+env.bak/
+venv.bak/
 
-# binary files
-*.exe
-*.dll
-*.bin
+# Pyre type checker
+.pyre/
 
-*.class
-*.pyc
+# pytype static type analyzer
+.pytype/
 
+# Cython debug symbols
+cython_debug/
 
-# Configuration files
-*.config
-*.conf
-.editorconfig
-
-# Logs and Databases
-*.db
-*.sqlite
-*.log
-
-# Jupyter Notebook Checkpoints
-.ipynb_checkpoints/
-
-# Version Control System Files
-.git/
-
-
+# PyCharm
+# .idea/
